@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
-import org.jdom2.*; /* external library, make available in the build path */
+//import org.jdom2.*; /* external library, make available in the build path */
 
 import org.jdom2.DataConversionException;
 import org.jdom2.Document;
@@ -28,17 +28,36 @@ import org.jdom2.input.SAXBuilder;
 			return l;	 
 		}
 		
+		/**
+		 * @param args
+		 */
 		public static void main(String[] args) {
 	 
 		  SAXBuilder builder = new SAXBuilder();
 		  File xmlFile = new File("/home/parallels/srp/workspace/srp_jdom/tst.xml");
-		  System.out.println("Start\n");
-	 
+		  
 		  try {
 	 
 			Document document = (Document) builder.build(xmlFile);
 			Element rootNode = document.getRootElement();
-			System.out.println("System : " + rootNode.getName());
+			
+			String target = ""; if (rootNode.getAttribute("target") != null) {target = rootNode.getAttribute("target").getValue();}
+			String schdeuler_type = ""; if (rootNode.getAttribute("schdeuler_type") != null) {schdeuler_type = rootNode.getAttribute("schdeuler_type").getValue();}
+			System.out.println(
+					"System : " + rootNode.getName() + "\n" + 
+					"target = " + target + "\n" +
+					"schdeuler_type = " + schdeuler_type
+					);
+			if (target.equals("LPC11xx")) {
+				System.out.println("target OK");
+			} else if (target == "LPC11xx") {
+				System.out.println("target OK");
+			} else if (target == "LPC11xx") {
+				System.out.println("target OK");	
+			} else {
+				throw new Exception("Unknwon target " + target );
+			}
+			
 			
 			List<Element> listr = rootNode.getChildren("resources");
 			List<Resource> lr = new ArrayList<Resource>();
@@ -87,10 +106,14 @@ import org.jdom2.input.SAXBuilder;
 			System.out.println("print resources before srp analysis\n");
 			Resource.print(lr); 
 			
+			/* on object level */
+			/*
 			System.out.println("srpCeiling analysis\n");
 			Srp.srpCeiling(jl, lr);
 			Resource.print(lr);
+			*/
 			
+			/* on method/job level */
 			System.out.println("srpReach analysis\n");
 			Srp.srpReach(jl, lr);
 			Resource.print(lr);
@@ -99,13 +122,15 @@ import org.jdom2.input.SAXBuilder;
 			Srp.setPrio(lr);
 			Resource.print(lr);
 			
-	 
+			
+			Kernel k = new Kernel(target, lr, jl);
+					
 		  } catch (IOException io) {
 			System.out.println(io.getMessage());
 		  } catch (JDOMException jdomex) {
 			System.out.println(jdomex.getMessage());
 		  } catch (Exception ex) {
-				System.out.println(ex.getMessage());
+			System.out.println(ex.getMessage());
 				
 		  }
 		}
