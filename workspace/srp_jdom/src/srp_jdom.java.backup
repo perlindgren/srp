@@ -1,0 +1,60 @@
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import org.jdom2.*; /* external library, make availble in the build path */
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+	 
+	public class srp_jdom {
+		private static void recResource(List list) {
+			System.out.println("recResource {\n");
+			for (int j = 0; j < list.size(); j++) {
+				Element noder = (Element) list.get(j);
+				System.out.println("Name : " + noder.getName());
+				recResource(noder.getChildren());
+			}
+			System.out.println("}\n");
+			
+			 
+		}
+		public static void main(String[] args) {
+	 
+		  SAXBuilder builder = new SAXBuilder();
+		  File xmlFile = new File("/home/parallels/srp/workspace/srp_jdom/tst.xml");
+		  System.out.println("Start\n");
+	 
+		  try {
+	 
+			Document document = (Document) builder.build(xmlFile);
+			Element rootNode = document.getRootElement();
+			System.out.println("System : " + rootNode.getName());
+			
+			List listr = rootNode.getChildren("resources");
+			
+			for (int i = 0; i < listr.size(); i++) {
+				Element node = (Element) listr.get(i);
+				System.out.println("Resources : " + node.getName());
+				recResource(node.getChildren());
+			}
+			
+			List listj = rootNode.getChildren("jobs");
+			
+			for (int i = 0; i < listj.size(); i++) {
+				Element node = (Element) listj.get(i);
+				System.out.println("Jobs : " + node.getName());
+				recResource(node.getChildren());
+			}
+	 
+		  } catch (IOException io) {
+			System.out.println(io.getMessage());
+		  } catch (JDOMException jdomex) {
+			System.out.println(jdomex.getMessage());
+		  }
+		}
+	}
+
