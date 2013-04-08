@@ -14,14 +14,13 @@ import org.jdom2.input.SAXBuilder;
 	
 	
 	public class srp_jdom {
-		private static List<ResUtil> recResource (List list, List<Resource> lr) throws DataConversionException {
+		private static List<ResUtil> recResource (List<Element> list, List<Resource> lr) throws DataConversionException {
 			List<ResUtil> l= new ArrayList<ResUtil>();
-			for (int j = 0; j < list.size(); j++) {
-				Element noder = (Element) list.get(j);
+			for (Element noder:list) {
 				String sub_job_code = ""; if (noder.getAttribute("sub_job_code") != null) {sub_job_code = noder.getAttribute("sub_job_code").getValue();}
 				int wcet = -1; if (noder.getAttribute("wcet") != null) {wcet = noder.getAttribute("wcet").getIntValue();}
 				
-				List<ResUtil> resRec= new ArrayList<ResUtil>();
+				List<ResUtil> resRec = new ArrayList<ResUtil>();
 				if (noder.getChildren()!=null){resRec = recResource(noder.getChildren(), lr); }
 				ResUtil newRes = new ResUtil( noder.getName(), sub_job_code, wcet, resRec, lr);
 				l.add(newRes);
@@ -41,29 +40,26 @@ import org.jdom2.input.SAXBuilder;
 			Element rootNode = document.getRootElement();
 			System.out.println("System : " + rootNode.getName());
 			
-			List listr = rootNode.getChildren("resources");
+			List<Element> listr = rootNode.getChildren("resources");
 			List<Resource> lr = new ArrayList<Resource>();
-			for (int i = 0; i < listr.size(); i++) {
-				Element node = (Element) listr.get(i);
-				List list = node.getChildren();
-				for (int j = 0; j < list.size(); j++) {
-					Element noder = (Element) list.get(j);
+			
+			for (Element node : listr) {
+				List<Element> list = node.getChildren();
+				for (Element noder : list) {
 					lr.add(new Resource(noder.getName()));
 				}
 			}
 			
 			List<Job> jl = new ArrayList<Job>();
 			
-			List listj = rootNode.getChildren("jobs");
+			List<Element> listj = rootNode.getChildren("jobs");
 			
-			for (int i = 0; i < listj.size(); i++) {
-				Element node = (Element) listj.get(i);
+			for (Element node : listj) {
 				System.out.println("Jobs : " + node.getName());
 				
-				List listk = node.getChildren();
+				List<Element> listk = node.getChildren();
 				
-				for (int j = 0; j < listk.size(); j++) {
-					Element nodek = (Element) listk.get(j);
+				for (Element nodek: listk) {
 					String job_name = nodek.getName();
 					String job_code = ""; if (nodek.getAttribute("job_code") != null) {job_code = nodek.getAttribute("job_code").getValue();}
 					int prio = -1; if (nodek.getAttribute("prio") != null) {prio = nodek.getAttribute("prio").getIntValue();}
