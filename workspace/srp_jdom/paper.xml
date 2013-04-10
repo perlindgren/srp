@@ -9,20 +9,20 @@
 </resources>
 
 <jobs>
-  <ta job_code = "code_ta" prio = "1" intn = "irq2" wcet = "42" arrival = "0">
+  <ta job_code = "code_ta" prio = "1" intn = "EINT0" wcet = "42" arrival = "0">
     <Rab sub_job_code = "code_tab" wcet = "29">
       <Rabe sub_job_code = "code_tabe" wcet = "20"/>
     </Rab>
     <RX sub_job_code = "code_tab" wcet = "29"/>
     
   </ta>  
-  <tf job_code = "code_tf" prio = "1" intn = "irq2" wcet = "0" arrival = "0">
+  <tf job_code = "code_tf" prio = "1" intn = "EINT1" wcet = "0" arrival = "0">
     <Ra sub_job_code = "code_xx" wcet = "0"/>
   </tf>  
-  <tx job_code = "code_tx" prio = "2" intn = "irg1" wcet = "0" arrival = "0">
+  <tx job_code = "code_tx" prio = "2" intn = "EINT2" wcet = "0" arrival = "0">
     <Rab sub_job_code = "code_xx" wcet = "0"/>
   </tx>
-  <tc job_code = "code_tc" prio = "3" intn = "irq0" wcet = "4" arrival= "0">  
+  <tc job_code = "code_tc" prio = "3" intn = "EINT3" wcet = "4" arrival= "0">  
     <Rabe sub_job_code = "code_xx" wcet = "0"/>
   </tc>
 </jobs>

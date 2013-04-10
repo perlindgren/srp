@@ -7,15 +7,15 @@
 </resources>
 
 <jobs>
-  <j1 job_code = "code_t1" prio = "1" intn = "irq2" wcet = "1000" arrival = "0">
+  <j1 job_code = "j1_code" prio = "1" intn = "EINT1" wcet = "1000" arrival = "0">
     <oa sub_job_code = "code_tab" wcet = "29"/>
   </j1>  
-  <j2 job_code = "code_t2" prio = "2" intn = "irq2" wcet = "10" arrival = "0">
+  <j2 job_code = "j2_code" prio = "2" intn = "EINT2" wcet = "10" arrival = "0">
     <ob sub_job_code = "code_xx" wcet = "10">
     	<oa sub_job_code = "code_xx" wcet = "10"/>
 	</ob>    
   </j2>  
-  <t3 job_code = "code_t3" prio = "3" intn = "irg1" wcet = "10" arrival = "0">
+  <t3 job_code = "j3_code" prio = "3" intn = "EINT3" wcet = "10" arrival = "0">
     <ob sub_job_code = "code_xx" wcet = "10"/>
   </t3>
 </jobs>

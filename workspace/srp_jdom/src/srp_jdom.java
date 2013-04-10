@@ -82,7 +82,7 @@ import org.jdom2.input.SAXBuilder;
 					String job_name = nodek.getName();
 					String job_code = ""; if (nodek.getAttribute("job_code") != null) {job_code = nodek.getAttribute("job_code").getValue();}
 					int prio = -1; if (nodek.getAttribute("prio") != null) {prio = nodek.getAttribute("prio").getIntValue();}
-					String intnr = ""; if (nodek.getAttribute("intnr") != null) {intnr = nodek.getAttribute("intnt").getValue();}
+					String intnr = ""; if (nodek.getAttribute("intn") != null) {intnr = nodek.getAttribute("intn").getValue();}
 					int wcet = -1; if (nodek.getAttribute("wcet") != null) {wcet = nodek.getAttribute("wcet").getIntValue();}
 					int arrival = -1; if (nodek.getAttribute("arrival") != null) {arrival = nodek.getAttribute("arrival").getIntValue();}
 					List<ResUtil> lRecUtil = recResource(nodek.getChildren(), lr);
