@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<system target = "LPC11xx" schdeuler_type = "level_masking">
+
+<!-- 
+job : name = j1, code = j1_code, prio = 1, intnr = EINT1, wcet = 100, arrival = 1000, resp = 110 (block 0, interference 10, wcet = 100)
+    recource : lev = 1, res_name = oa, code_name = , ceiling = 2, blocking_time = 5
+
+job : name = j2, code = j2_code, prio = 2, intnr = EINT2, wcet = 10, arrival = 200, resp = 15 (block 5, interference 0, wcet = 10)
+    recource : lev = 1, res_name = ob, code_name = , ceiling = 2, blocking_time = 10
+        recource : lev = 2, res_name = oa, code_name = , ceiling = 2, blocking_time = 2
+-->
+
+<resources>
+  <oa/>
+  <ob/>
+</resources>
+
+<jobs>
+  <j1 job_code = "j1_code" prio = "1" intn = "EINT1" wcet = "100" arrival = "1000">
+  <oa wcet = "5"/>
+  
+  </j1>  
+  
+  <j2 job_code = "j2_code" prio = "2" intn = "EINT2" wcet = "10" arrival = "200">
+  <ob wcet = "10">
+  	<oa wcet = "2"/>
+  </ob>  
+   </j2>  
+</jobs>
+
+</system>

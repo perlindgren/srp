@@ -1,23 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<system target = "LPC11xx" schdeuler_type = "masking">
+
+<system target = "LPC11xx" schdeuler_type = "level_masking">
+
+<!-- jobs
+job : name = j1, code = j1_code, prio = 1, intnr = EINT1, wcet = 269, arrival = 2499, resp = 2529 (block 0, interference 2260, wcet = 269)
+    recource : lev = 1, res_name = oa, code_name = , ceiling = 2, blocking_time = 269
+
+job : name = j2, code = j2_code, prio = 2, intnr = EINT2, wcet = 592, arrival = 1310, resp = 1399 (block 269, interference 538, wcet = 592)
+    recource : lev = 1, res_name = ob, code_name = , ceiling = 3, blocking_time = 592
+        recource : lev = 2, res_name = oa, code_name = , ceiling = 2, blocking_time = 592
+
+job : name = j3, code = j3_code, prio = 3, intnr = EINT2, wcet = 269, arrival = 744, resp = 861 (block 592, interference 0, wcet = 269)
+    recource : lev = 1, res_name = ob, code_name = , ceiling = 3, blocking_time = 269
+
+
+-->
+
 <resources>
   <oa/>
   <ob/>
+
 </resources>
 
 <jobs>
-  <j1 job_code = "j1_code" prio = "1" intn = "EINT1" wcet = "1000" arrival = "0">
-    <oa sub_job_code = "code_tab" wcet = "29"/>
+  <j1 job_code = "j1_code" prio = "1" intn = "EINT1" wcet = "269" arrival = "2499">
+ 	<oa wcet = "269"/>
   </j1>  
-  <j2 job_code = "j2_code" prio = "2" intn = "EINT2" wcet = "10" arrival = "0">
-    <ob sub_job_code = "code_xx" wcet = "10">
-    	<oa sub_job_code = "code_xx" wcet = "10"/>
-	</ob>    
-  </j2>  
-  <t3 job_code = "j3_code" prio = "3" intn = "EINT3" wcet = "10" arrival = "0">
-    <ob sub_job_code = "code_xx" wcet = "10"/>
-  </t3>
+  
+  <j2 job_code = "j2_code" prio = "2" intn = "EINT2" wcet = "592" arrival = "1310">
+  <ob wcet = "592">
+  	<oa wcet = "592">
+ 	</oa>  
+  </ob>
+  </j2> 
+  
+  <j3 job_code = "j3_code" prio = "3" intn = "EINT2" wcet = "269" arrival = "744">
+  <ob wcet = "269"/>
+  </j3> 
+   
 </jobs>
 
 </system>

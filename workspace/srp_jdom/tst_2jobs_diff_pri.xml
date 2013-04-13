@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- j1 will be interfered two times by j2, hence resp = (block = 0), interfere 2*10, wcet 100 -> response 120 -->
+<!-- j2 no blocking, no interference by higher level wcet 10 -> response 10 -->
+<system target = "LPC11xx" schdeuler_type = "level_masking">
+<resources>
+  <oa/>
+  <ob/>
+</resources>
+
+<jobs>
+  <j1 job_code = "j1_code" prio = "1" intn = "EINT1" wcet = "100" arrival = "1000">
+  </j1>  
+  <j2 job_code = "j2_code" prio = "2" intn = "EINT2" wcet = "10" arrival = "100">
+  </j2>  
+</jobs>
+
+</system>

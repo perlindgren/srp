@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+job : name = j1, code = j1_code, prio = 1, intnr = EINT1, wcet = 100, arrival = 1000, resp = 220 (block 0, interference 120, wcet = 100)
+
+job : name = j2, code = j2_code, prio = 2, intnr = EINT2, wcet = 10, arrival = 200, resp = 110 (block 100, interference 0, wcet = 10)
+
+job : name = j3, code = j2_code, prio = 2, intnr = EINT2, wcet = 100, arrival = 500, resp = 110 (block 10, interference 0, wcet = 100)
+-->
+
+<system target = "LPC11xx" schdeuler_type = "level_masking">
+<resources>
+  <oa/>
+  <ob/>
+</resources>
+
+<jobs>
+  <j1 job_code = "j1_code" prio = "1" intn = "EINT1" wcet = "100" arrival = "1000">
+  </j1>  
+  
+  <j2 job_code = "j2_code" prio = "2" intn = "EINT2" wcet = "10" arrival = "200">
+  </j2>
+  <j3 job_code = "j2_code" prio = "2" intn = "EINT2" wcet = "100" arrival = "500">
+  </j3>  
+</jobs>
+
+</system>

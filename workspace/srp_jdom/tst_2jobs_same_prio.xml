@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- System with two tasks at the same priority, only blocking -->
+<!-- resp j1 110, blocking 10, wcet 100 -->
+<!-- resp j2 110, blocking 100, wcet 10 -->
+<system target = "LPC11xx" schdeuler_type = "level_masking">
+<resources>
+  <oa/>
+  <ob/>
+</resources>
+
+<jobs>
+  <j1 job_code = "j1_code" prio = "1" intn = "EINT1" wcet = "100" arrival = "1000">
+  </j1>  
+  <j2 job_code = "j2_code" prio = "1" intn = "EINT2" wcet = "10" arrival = "100">
+  </j2>  
+</jobs>
+
+</system>

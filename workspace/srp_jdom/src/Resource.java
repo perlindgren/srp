@@ -32,6 +32,14 @@ public class Resource {
 		}
 	}
 
+	public static List<Resource> clone(List<Resource> lr) {
+		List<Resource> ret = new ArrayList<Resource>();
+		for (Resource r:lr) {
+			ret.add(r);
+		}
+		return ret;
+	}
+	
 	static public Resource lookup(List<Resource> lr, String name) {
 		try {
 			for (Resource r : lr){

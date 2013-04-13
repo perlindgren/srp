@@ -122,8 +122,17 @@ import org.jdom2.input.SAXBuilder;
 			Srp.setPrio(lr);
 			Resource.print(lr);
 			
+			System.out.println("Srp.utilization\n");
+			Srp.utilization(jl);
 			
-			Kernel k = new Kernel(target, lr, jl);
+			System.out.println("Srp.responseTime\n");
+			Srp.responseTime(jl);
+			
+			System.out.println("Result of analysis\n");
+			Job.print(jl);
+			
+			
+			//Kernel k = new Kernel(target, schdeuler_type, lr, jl);
 					
 		  } catch (IOException io) {
 			System.out.println(io.getMessage());
